@@ -5,6 +5,8 @@ if [ -n "${GITHUB_WORKSPACE}" ] ; then
   cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit
 fi
 
+git config --global --add safe.directory $GITHUB_WORKSPACE || exit 1
+
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 find ${GITHUB_WORKSPACE} -type f -name '*.md' -exec quality-docs {} + \

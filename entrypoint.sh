@@ -9,7 +9,7 @@ git config --global --add safe.directory $GITHUB_WORKSPACE || exit 1
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-find ${GITHUB_WORKSPACE} -type f -name '*.md' -exec quality-docs {} + \
+find ${GITHUB_WORKSPACE} -type f -name '*.mdx' -exec quality-docs {} + \
   | reviewdog \
       -efm='%-P%f' \
       -efm=' %#%l:%c-%[0-9]%#:%[0-9]%# %# %trror  %m' \

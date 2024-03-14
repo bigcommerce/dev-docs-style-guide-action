@@ -11,6 +11,7 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 find ${GITHUB_WORKSPACE} -type f -name '*.mdx' -exec quality-docs {} + \
   | reviewdog -f=remark-lint \
+      -name="remark-lint" \
       -reporter="${INPUT_REPORTER:-github-pr-check}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \

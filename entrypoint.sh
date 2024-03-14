@@ -10,12 +10,7 @@ git config --global --add safe.directory $GITHUB_WORKSPACE || exit 1
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 find ${GITHUB_WORKSPACE} -type f -name '*.mdx' -exec quality-docs {} + \
-  | reviewdog \
-      -efm='%-P%f' \
-      -efm=' %#%l:%c-%[0-9]%#:%[0-9]%# %# %trror  %m' \
-      -efm=' %#%l:%c-%[0-9]%#:%[0-9]%# %# %tarning  %m' \
-      -efm='%-Q' \
-      -efm='%-G%.%#' \
+  | reviewdog -f=markdown \
       -reporter="${INPUT_REPORTER:-github-pr-check}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
